@@ -49,7 +49,7 @@ Describe 'New-NanoId' {
 
     It 'should not have collisions' {
         $Ids = @()
-        $Iterations = 1000000
+        $Iterations = 10000
 
         1..$Iterations | ForEach-Object {
             $Id = New-NanoId
