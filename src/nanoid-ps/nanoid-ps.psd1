@@ -32,7 +32,7 @@
     Description = 'PowerShell implementation of the Nano ID generator.'
 
     # Minimum version of the PowerShell engine required by this module
-    PowerShellVersion  = '7.4.0'
+    PowerShellVersion  = '7.2.0'
 
     # Name of the PowerShell host required by this module
     # PowerShellHostName = ''
