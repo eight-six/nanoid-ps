@@ -26,7 +26,7 @@ jobs:
         Invoke-Pester -Path "test/pester"        
       shell: pwsh
   publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: [test-windows, test-linux]
     steps:
       - uses: actions/checkout@v4.1.1
