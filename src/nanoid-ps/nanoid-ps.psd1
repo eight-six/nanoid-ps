@@ -20,7 +20,7 @@
     GUID               = '2bf2ac40-0541-48b7-b4bf-5dc9f02c3d90'
 
     # Author of this module
-    Author             = '@eightsix'
+    Author             = 'eight-six'
 
     # Company or vendor of this module
     CompanyName        = 'Eight Six Consulting Ltd'
@@ -29,7 +29,7 @@
     Copyright          = '(c) Eight Six Consulting Ltd. All rights reserved.'
 
     # Description of the functionality provided by this module
-    # Description = ''
+    Description = 'PowerShell implementation of the Nano ID generator.'
 
     # Minimum version of the PowerShell engine required by this module
     PowerShellVersion  = '7.4.0'
@@ -54,7 +54,7 @@
 
     # Assemblies that must be loaded prior to importing this module
     RequiredAssemblies = @(
-        'System.Security.Cryptography'
+        'System.Security'
     )
 
     # Script files (.ps1) that are run in the caller's environment prior to importing this module.
