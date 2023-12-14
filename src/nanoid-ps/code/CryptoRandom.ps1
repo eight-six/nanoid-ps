@@ -15,7 +15,6 @@ class CryptoRandom : Random {
         $Buffer = [byte[]]::new(4)
         $this.NextBytes($Buffer);
 
-        #return [BitConverter]::ToUInt32($Buffer, 0) / (1.0d + [UInt32]::MaxValue);
         return [BitConverter]::ToUInt32($Buffer, 0) / [double][UInt32]::MaxValue;
     }
 
@@ -36,11 +35,8 @@ class CryptoRandom : Random {
             return $MinValue
         }
 
-        # original: $Range = [long]$MaxValue - $MinValue;
-        # don't think the cast to [long] this is necessary 
         $Range = $MaxValue - $MinValue;
         
-        # same here - removed the cast to [long]
         return [int]([Math]::Floor($this.NextDouble() * $Range) + $MinValue)
     }
 
