@@ -28,7 +28,7 @@ class CryptoRandom : Random {
         }
 
         if ($MinValue -gt $MaxValue) {
-            throw [ArgumentOutOfRangeException]("MinValue must be less than NaxValue. Received $MinValue and $MaxValue.")
+            throw [ArgumentOutOfRangeException]("MinValue must be less than MaxValue. Received $MinValue and $MaxValue.")
         }
 
         if ($MinValue -eq $MaxValue) {
