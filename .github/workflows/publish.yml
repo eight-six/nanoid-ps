@@ -1,0 +1,43 @@
+name: Publish
+on:
+ workflow_call: 
+permissions:
+  contents: write
+jobs:
+  test-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4.1.1
+    - name: Run Pester tests on Windows
+      run: |
+        Set-PSRepository psgallery -InstallationPolicy trusted
+        Install-Module -Name Pester -RequiredVersion 5.0.4 -Confirm:$false -Force
+        Invoke-Pester -Path "test/pester"        
+      shell: pwsh
+  test-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.1.1
+    - name: Run Pester tests on Ubuntu
+      run: |
+        Set-PSRepository psgallery -InstallationPolicy trusted
+        Install-Module -Name Pester -RequiredVersion 5.0.4 -Confirm:$false -Force
+        Invoke-Pester -Path "test/pester"        
+      shell: pwsh
+  publish:
+    runs-on: windows-latest
+    needs: [test-windows, test-linux]
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: set module version
+        env:
+          MODULE_VERSION: ${{ github.event.release.tag_name }}
+        shell: pwsh
+        run: |
+          Update-ModuleManifest -Path './src/nanoid-ps/nanoid-ps.psd1' -ModuleVersion "$Env:MODULE_VERSION"
+      - name: publish to ps gallery
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        shell: pwsh
+        run: |
+          & ./tools/publish.ps1
