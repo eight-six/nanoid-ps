@@ -1,6 +1,11 @@
 name: Publish
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish'
+        required: true
+        default: '0.0.0'
 permissions:
   contents: write
 jobs:
@@ -31,7 +36,7 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - name: set module version
         env:
-          MODULE_VERSION: ${{ github.event.release.tag_name }}
+          MODULE_VERSION: ${{ github.event.inputs.version }}
         shell: pwsh
         run: |
           Update-ModuleManifest -Path './src/nanoid-ps/nanoid-ps.psd1' -ModuleVersion "$Env:MODULE_VERSION"
