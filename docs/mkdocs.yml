@@ -1,0 +1,12 @@
+site_name: nanoid-ps
+site_description: Powershell port of nanoid-net ^ nanoid
+theme: readthedocs
+
+repo_name: eight-six/nanoid-ps
+repo_url: https://github.com/eight-six/nanoid-ps
+edit_uri: ""
+
+nav:
+    - Home: index.md
+
+markdown_extensions:

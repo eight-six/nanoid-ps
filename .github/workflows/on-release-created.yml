@@ -30,16 +30,6 @@ jobs:
     needs: [test-windows, test-linux]
     steps:
       - uses: actions/checkout@v4.1.1
-      - name: set module version
-        env:
-          MODULE_VERSION: ${{ github.event.release.tag_name }}
-        shell: pwsh
-        run: |
-          Update-ModuleManifest -Path './src/nanoid-ps/nanoid-ps.psd1' -ModuleVersion "$Env:MODULE_VERSION"
-
-      - name: publish to ps gallery
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        shell: pwsh
-        run: |
-          & ./tools/publish.ps1
+      - uses: .github\workflows\publish.yml
+        with:
+          version: ${{ github.event.release.tag_name }}
