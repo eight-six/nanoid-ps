@@ -1,5 +1,5 @@
 $Params = @{
-    Path        = "$HOME\source\repos\nanoid-ps\src\nanoid-ps"
+    Path        = Join-Path $PSScriptRoot 'nanoid-ps' 'src' 'nanoid-ps'
     NuGetApiKey = "$Env:NUGET_API_KEY"
 }
 
